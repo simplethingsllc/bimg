@@ -18,7 +18,6 @@ func TestDeterminateImageType(t *testing.T) {
 		{"test.gif", GIF},
 		{"test.pdf", PDF},
 		{"test.svg", SVG},
-		{"test.jp2", MAGICK},
 	}
 
 	for _, file := range files {
@@ -27,7 +26,7 @@ func TestDeterminateImageType(t *testing.T) {
 		defer img.Close()
 
 		if DetermineImageType(buf) != file.expected {
-			t.Fatal("Image type is not valid")
+			t.Fatal("Image type is not valid: " + file.name)
 		}
 	}
 }
@@ -43,7 +42,6 @@ func TestDeterminateImageTypeName(t *testing.T) {
 		{"test.gif", "gif"},
 		{"test.pdf", "pdf"},
 		{"test.svg", "svg"},
-		{"test.jp2", "magick"},
 	}
 
 	for _, file := range files {
@@ -52,7 +50,7 @@ func TestDeterminateImageTypeName(t *testing.T) {
 		defer img.Close()
 
 		if DetermineImageTypeName(buf) != file.expected {
-			t.Fatal("Image type is not valid")
+			t.Fatal("Image type is not valid: " + file.name)
 		}
 	}
 }
